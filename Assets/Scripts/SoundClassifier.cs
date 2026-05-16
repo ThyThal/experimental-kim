@@ -14,10 +14,14 @@ public class SoundClassifier : MonoBehaviour
     [SerializeField] private float _screamAmplitudeThreshold = 0.03f;
     [SerializeField] private float _talkAmplitudeThreshold = 0.005f;
 
+    [Header("Label")]
+    [SerializeField] private float _labelResetDelay = 2f;
+
     private float _burstStartTime;
     private float _peakDuringBurst;
     private float _amplitudeSum;
     private int _amplitudeSampleCount;
+    private float _lastSoundStopTime = float.MinValue;
 
     private void Awake()
     {
@@ -41,13 +45,26 @@ public class SoundClassifier : MonoBehaviour
 
     private void Update()
     {
-        if (!_soundDetector.IsActive) return;
+        if (_soundDetector.IsActive)
+        {
+            if (_microphoneManager.Peak > _peakDuringBurst)
+                _peakDuringBurst = _microphoneManager.Peak;
 
-        if (_microphoneManager.Peak > _peakDuringBurst)
-            _peakDuringBurst = _microphoneManager.Peak;
+            _amplitudeSum += _microphoneManager.Amplitude;
+            _amplitudeSampleCount++;
 
-        _amplitudeSum += _microphoneManager.Amplitude;
-        _amplitudeSampleCount++;
+            if (_detectionLabel != null && _amplitudeSampleCount > 0)
+            {
+                float avg = _amplitudeSum / _amplitudeSampleCount;
+                float crest = avg > 0f ? _peakDuringBurst / avg : 0f;
+                _detectionLabel.text = Classify(crest, avg);
+            }
+        }
+        else if (_detectionLabel != null && _detectionLabel.text != "...")
+        {
+            if (Time.time - _lastSoundStopTime >= _labelResetDelay)
+                _detectionLabel.text = "...";
+        }
     }
 
     private void HandleSoundStart()
@@ -57,8 +74,6 @@ public class SoundClassifier : MonoBehaviour
         _amplitudeSum = 0f;
         _amplitudeSampleCount = 0;
 
-        if (_detectionLabel != null)
-            _detectionLabel.text = "...";
     }
 
     private void HandleSoundStop()
@@ -69,6 +84,8 @@ public class SoundClassifier : MonoBehaviour
 
         string soundType = Classify(crestFactor, avgAmplitude);
         Debug.Log($"[SoundClassifier] {soundType} | duration: {duration:F2}s | crest: {crestFactor:F1} | amplitude: {avgAmplitude:F3}");
+
+        _lastSoundStopTime = Time.time;
 
         if (_detectionLabel != null)
             _detectionLabel.text = soundType;
