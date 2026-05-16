@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class MicrophoneManager : MonoBehaviour
 {
-    [SerializeField] private int sampleWindow = 128;
+    [SerializeField] private int _sampleWindow = 128;
 
     private AudioClip _micClip;
+    private float[] _samples;
 
     public float Amplitude { get; private set; }
+    public float Peak { get; private set; }
     public bool IsReady { get; private set; }
 
     private void Awake()
@@ -17,8 +19,10 @@ public class MicrophoneManager : MonoBehaviour
             return;
         }
 
-        _micClip = Microphone.Start(null, true, 1, AudioSettings.outputSampleRate);
+        _micClip = Microphone.Start(null, true, 2, AudioSettings.outputSampleRate);
+        _samples = new float[_sampleWindow];
         IsReady = true;
+        Debug.Log($"[MicrophoneManager] Using device: {Microphone.devices[0]}");
     }
 
     private void OnDestroy()
@@ -31,16 +35,21 @@ public class MicrophoneManager : MonoBehaviour
     {
         if (!IsReady) return;
 
-        int micPosition = Microphone.GetPosition(null);
-        if (micPosition < sampleWindow) return;
+        var micPosition = Microphone.GetPosition(null);
+        if (micPosition < _sampleWindow) return;
 
-        float[] samples = new float[sampleWindow];
-        _micClip.GetData(samples, micPosition - sampleWindow);
+        _micClip.GetData(_samples, micPosition - _sampleWindow);
 
-        float sum = 0f;
-        for (int i = 0; i < sampleWindow; i++)
-            sum += samples[i] * samples[i];
+        var sum = 0f;
+        var peak = 0f;
+        for (var i = 0; i < _sampleWindow; i++)
+        {
+            var abs = Mathf.Abs(_samples[i]);
+            sum += abs * abs;
+            if (abs > peak) peak = abs;
+        }
 
-        Amplitude = Mathf.Sqrt(sum / sampleWindow);
+        Amplitude = Mathf.Sqrt(sum / _sampleWindow);
+        Peak = peak;
     }
 }
