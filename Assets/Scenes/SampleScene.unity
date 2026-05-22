@@ -592,7 +592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933e4a3f88ff9a3479f147803c034ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _soundDetector: {fileID: 491053553}
+  _soundClassifier: {fileID: 491053557}
+  _backgroundSpawner: {fileID: 729741921}
   _moveSpeed: 3
 --- !u!114 &491053553
 MonoBehaviour:
@@ -1141,14 +1142,18 @@ MonoBehaviour:
   _tileY: 0
   _tileZ: 1
   _zones:
-  - tileCount: 10
+  - tileCount: 5
     color: {r: 1, g: 0, b: 0, a: 0.0627451}
-  - tileCount: 10
+    inputType: 1
+  - tileCount: 5
     color: {r: 0.3066038, g: 1, b: 0.53290373, a: 0.0627451}
-  - tileCount: 10
+    inputType: 0
+  - tileCount: 5
     color: {r: 1, g: 0.8932203, b: 0.30588233, a: 0.0627451}
-  - tileCount: 10
+    inputType: 2
+  - tileCount: 5
     color: {r: 0.30588233, g: 0.6911655, b: 1, a: 0.0627451}
+    inputType: 3
   _overlayZ: 0
 --- !u!1 &741010678
 GameObject:
