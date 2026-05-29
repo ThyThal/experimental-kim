@@ -3,18 +3,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private SoundClassifier _soundClassifier;
-    [SerializeField] private BackgroundSpawner _backgroundSpawner;
     [SerializeField] private float _moveSpeed = 3f;
+    [Tooltip("Voice type required to move through the gray travel areas.")]
+    [SerializeField] private ZoneInputType _travelInputType = ZoneInputType.Talk;
+
+    // Gated by ChallengeController: false while a specific-zone challenge runs.
+    public bool CanMove { get; set; } = true;
 
     private void Update()
     {
+        if (!CanMove) return;
         if (!_soundClassifier.IsActive) return;
-
-        var required = _backgroundSpawner != null
-            ? _backgroundSpawner.GetInputTypeAt(transform.position.x)
-            : ZoneInputType.Talk;
-
-        if (_soundClassifier.CurrentType != required) return;
+        if (_soundClassifier.CurrentType != _travelInputType) return;
 
         transform.position += Vector3.right * (_moveSpeed * Time.deltaTime);
     }
