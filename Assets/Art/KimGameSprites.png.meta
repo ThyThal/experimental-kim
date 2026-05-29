@@ -818,6 +818,72 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Angry
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 435
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 210cdc9703930e041b5e3f551ef3b5cf
+      internalID: 747220518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Happy
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 435
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790879d3e57d7a244a805d554a62a703
+      internalID: -620658955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 432
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 216c661ba44dfdb4fb6648fb0136162b
+      internalID: 2011439747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -832,6 +898,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Angry: 747220518
       BG_Clap: 636687451
       BG_Finish: -4273452697996040285
       BG_Murmur: -1712195265
@@ -842,6 +909,8 @@ TextureImporter:
       BG_Wall3: -1103313999
       BG_Wall4: 1764758756
       BG_Wall5: -1851769553
+      Button: 2011439747
+      Happy: -620658955
       KimGameSprites_0: 2553893787669375099
       KimGameSprites_1: -7579372934543730620
       KimGameSprites_10: 1664803858
