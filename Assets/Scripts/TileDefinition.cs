@@ -12,11 +12,4 @@ public class TileDefinition : ScriptableObject
     public bool isDefault = false;
     public bool isSeparator = false;
     public bool isEnd = false;
-
-    // Event tiles are reserved for specific zones: excluded from the gray
-    // weighted-random fill, and matched to a zone by eventType.
-    public bool isEventTile = false;
-    public ZoneInputType eventType = ZoneInputType.Talk;
-    // Color of the challenge overlay drawn over this event tile.
-    public Color overlayColor = Color.white;
 }
