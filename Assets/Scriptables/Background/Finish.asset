@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: Finish
   m_EditorClassIdentifier: MRKim.Scripts::TileDefinition
   sprite: {fileID: -4273452697996040285, guid: 76760157c52c11f4ab799acfcd6d5105, type: 3}
+  sprites:
+  - {fileID: -4273452697996040285, guid: 76760157c52c11f4ab799acfcd6d5105, type: 3}
   weight: 1
   minWallsBefore: 0
   isDefault: 0
   isSeparator: 0
   isEnd: 1
+  isEventTile: 0
+  eventType: 3
+  overlayColor: {r: 1, g: 1, b: 1, a: 0.105882354}

@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_2
+      name: BG_Finish
       rect:
         serializedVersion: 2
         x: 272
@@ -401,7 +401,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_14
+      name: BG_Wall1
       rect:
         serializedVersion: 2
         x: 0
@@ -577,7 +577,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_24
+      name: BG_Wall2
       rect:
         serializedVersion: 2
         x: 64
@@ -599,7 +599,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_25
+      name: BG_Wall3
       rect:
         serializedVersion: 2
         x: 128
@@ -621,7 +621,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_26
+      name: BG_Wall4
       rect:
         serializedVersion: 2
         x: 192
@@ -643,7 +643,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_27
+      name: BG_Wall5
       rect:
         serializedVersion: 2
         x: 240
@@ -665,7 +665,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_13
+      name: BG_Scream
       rect:
         serializedVersion: 2
         x: 0
@@ -687,7 +687,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_18
+      name: BG_Clap
       rect:
         serializedVersion: 2
         x: 192
@@ -709,7 +709,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_23
+      name: BG_Talk
       rect:
         serializedVersion: 2
         x: 384
@@ -731,7 +731,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KimGameSprites_28
+      name: BG_Murmur
       rect:
         serializedVersion: 2
         x: 576
@@ -832,28 +832,28 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      BG_Clap: 636687451
+      BG_Finish: -4273452697996040285
+      BG_Murmur: -1712195265
+      BG_Scream: -1985777687
+      BG_Talk: 848250082
+      BG_Wall1: -388327126
+      BG_Wall2: 1820984202
+      BG_Wall3: -1103313999
+      BG_Wall4: 1764758756
+      BG_Wall5: -1851769553
       KimGameSprites_0: 2553893787669375099
       KimGameSprites_1: -7579372934543730620
       KimGameSprites_10: 1664803858
       KimGameSprites_11: -1647839757
       KimGameSprites_12: 793037707
-      KimGameSprites_13: -1985777687
-      KimGameSprites_14: -388327126
       KimGameSprites_15: 40250395
       KimGameSprites_16: -506205720
       KimGameSprites_17: -1904586497
-      KimGameSprites_18: 636687451
       KimGameSprites_19: 254325654
-      KimGameSprites_2: -4273452697996040285
       KimGameSprites_20: -721662270
       KimGameSprites_21: 1956575664
       KimGameSprites_22: -1647039010
-      KimGameSprites_23: 848250082
-      KimGameSprites_24: 1820984202
-      KimGameSprites_25: -1103313999
-      KimGameSprites_26: 1764758756
-      KimGameSprites_27: -1851769553
-      KimGameSprites_28: -1712195265
       KimGameSprites_29: 298235099
       KimGameSprites_3: 2860702990859403856
       KimGameSprites_4: 7023018863816109280
