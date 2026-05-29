@@ -13,6 +13,88 @@ public class BackgroundSpawnerTests
         return def;
     }
 
+    private static TileDefinition MakeEventDef(float weight, ZoneInputType type)
+    {
+        var def = ScriptableObject.CreateInstance<TileDefinition>();
+        def.weight = weight;
+        def.isEventTile = true;
+        def.eventType = type;
+        return def;
+    }
+
+    [Test]
+    public void MiddleTileIndex_OddCountIsExactMiddle()
+    {
+        Assert.AreEqual(3, BackgroundSpawner.MiddleTileIndex(5, new System.Random(1)));
+        Assert.AreEqual(1, BackgroundSpawner.MiddleTileIndex(1, new System.Random(1)));
+    }
+
+    [Test]
+    public void MiddleTileIndex_EvenCountIsOneOfTwoCentral()
+    {
+        for (int seed = 0; seed < 20; seed++)
+        {
+            int result = BackgroundSpawner.MiddleTileIndex(6, new System.Random(seed));
+            Assert.IsTrue(result == 3 || result == 4, $"seed {seed} gave {result}");
+        }
+    }
+
+    [Test]
+    public void MiddleTileIndex_NonPositiveReturnsMinusOne()
+    {
+        Assert.AreEqual(-1, BackgroundSpawner.MiddleTileIndex(0, new System.Random(1)));
+        Assert.AreEqual(-1, BackgroundSpawner.MiddleTileIndex(-3, new System.Random(1)));
+    }
+
+    [Test]
+    public void MatchEventTile_PicksMatchingType()
+    {
+        var scream = MakeEventDef(1f, ZoneInputType.Scream);
+        var talk = MakeEventDef(1f, ZoneInputType.Talk);
+
+        var result = BackgroundSpawner.MatchEventTile(new[] { scream, talk }, ZoneInputType.Talk, 0.5f);
+
+        Assert.AreEqual(talk, result);
+    }
+
+    [Test]
+    public void MatchEventTile_NoMatchReturnsNull()
+    {
+        var scream = MakeEventDef(1f, ZoneInputType.Scream);
+        var wall = MakeDef(10f, 0, isDefault: true); // not an event tile
+
+        var result = BackgroundSpawner.MatchEventTile(new[] { scream, wall }, ZoneInputType.Clap, 0.5f);
+
+        Assert.IsNull(result);
+    }
+
+    [Test]
+    public void MatchEventTile_WeightedAcrossMultipleMatches()
+    {
+        var a = MakeEventDef(1f, ZoneInputType.Talk);
+        var b = MakeEventDef(3f, ZoneInputType.Talk);
+        var defs = new[] { a, b };
+
+        // total weight 4; roll01=0.1 -> target 0.4 < 1 -> a; roll01=0.9 -> target 3.6 -> b
+        Assert.AreEqual(a, BackgroundSpawner.MatchEventTile(defs, ZoneInputType.Talk, 0.1f));
+        Assert.AreEqual(b, BackgroundSpawner.MatchEventTile(defs, ZoneInputType.Talk, 0.9f));
+    }
+
+    [Test]
+    public void PickTileType_SkipsEventTiles()
+    {
+        var wall = MakeDef(10f, 0, isDefault: true);
+        var eventTile = MakeEventDef(100f, ZoneInputType.Scream);
+
+        // Even with huge weight, the event tile must never be picked from the gray pool.
+        var result = BackgroundSpawner.PickTileType(
+            new[] { wall, eventTile },
+            new Dictionary<TileDefinition, int>(),
+            5f);
+
+        Assert.AreEqual(wall, result);
+    }
+
     [Test]
     public void PickTileType_WallAlwaysEligible()
     {

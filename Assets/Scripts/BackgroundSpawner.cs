@@ -13,8 +13,20 @@ public enum ZoneInputType
 public struct TileZone
 {
     public int tileCount;
-    public Color color;
     public ZoneInputType inputType;
+}
+
+/// <summary>A point where the player stops to perform a timed voice challenge.</summary>
+public readonly struct ChallengePoint
+{
+    public readonly float midpointX;
+    public readonly ZoneInputType requiredType;
+
+    public ChallengePoint(float midpointX, ZoneInputType requiredType)
+    {
+        this.midpointX = midpointX;
+        this.requiredType = requiredType;
+    }
 }
 
 public class BackgroundSpawner : MonoBehaviour
@@ -26,6 +38,10 @@ public class BackgroundSpawner : MonoBehaviour
     [SerializeField] private float _tileZ = -1f;
     [SerializeField] private TileZone[] _zones;
     [SerializeField] private float _overlayZ = -0.5f;
+    [Tooltip("Color painted across the whole section (the gray travel area).")]
+    [SerializeField] private Color _defaultZoneColor = Color.gray;
+    [Tooltip("Destroy any pre-placed child tiles/overlays at startup and generate fresh from this object's position. Prevents stale leftover tiles from pushing challenges out of the player's reach.")]
+    [SerializeField] private bool _clearExistingOnStart = true;
 
     private float _spawnX;
     private bool _lastWasSeparator = true;
@@ -35,12 +51,23 @@ public class BackgroundSpawner : MonoBehaviour
     private int _contentTilesInZone;
     private int _currentZoneIndex;
     private float _currentZoneStartX;
+    // Which content tile (1-based) in the current zone is the specific challenge
+    // tile, and the placed span of that tile once we reach it. -1 = not chosen.
+    private int _middleIndexThisZone = -1;
+    private bool _hasMidTile;
+    private float _midTileLeftX;
+    private float _midTileWidth;
+    private TileDefinition _midTileDef;
+    private System.Random _rng = new();
     // Counts default tiles placed since each special type last appeared.
     private readonly Dictionary<TileDefinition, int> _wallsSince = new();
     private readonly Dictionary<TileDefinition, Queue<GameObject>> _pool = new();
     private readonly List<(GameObject go, TileDefinition def, float rightEdge)> _active = new();
     private readonly List<(GameObject go, float rightEdge)> _manualTiles = new();
-    private readonly List<(float startX, float endX, ZoneInputType inputType)> _zoneBoundaries = new();
+    private readonly List<ChallengePoint> _challenges = new();
+
+    /// <summary>Challenge points discovered so far, ordered left to right.</summary>
+    public IReadOnlyList<ChallengePoint> Challenges => _challenges;
 
     private void Start()
     {
@@ -59,10 +86,22 @@ public class BackgroundSpawner : MonoBehaviour
             Debug.Log($"[BackgroundSpawner] {_zones.Length} zone(s) configured. First zone needs {_zones[0].tileCount} tiles.", this);
 
         foreach (var def in _tileDefinitions)
-            if (!def.isDefault && !def.isSeparator)
+            if (!def.isDefault && !def.isSeparator && !def.isEventTile)
                 _wallsSince[def] = def.minWallsBefore;
 
-        if (!RebuildFromExistingTiles())
+        if (_clearExistingOnStart)
+        {
+            // Wipe stale pre-placed tiles/overlays so spawning (and challenges)
+            // start from this object's position, near the player — not from the
+            // right edge of leftover tiles far down the level.
+            for (int i = transform.childCount - 1; i >= 0; i--)
+                Destroy(transform.GetChild(i).gameObject);
+
+            _spawnX = transform.position.x;
+            _currentZoneStartX = _spawnX;
+            _lastWasSeparator = true;
+        }
+        else if (!RebuildFromExistingTiles())
         {
             _spawnX = transform.position.x;
             _currentZoneStartX = _spawnX;
@@ -88,7 +127,7 @@ public class BackgroundSpawner : MonoBehaviour
                 if (rightEdge > maxRight) maxRight = rightEdge;
                 foundAny = true;
             }
-            else if (sr != null && child.name != "ZoneOverlay")
+            else if (sr != null && child.name != "ZoneOverlay" && child.name != "SpecificZoneOverlay")
             {
                 float rightEdge = sr.bounds.max.x;
                 _manualTiles.Add((child, rightEdge));
@@ -105,6 +144,9 @@ public class BackgroundSpawner : MonoBehaviour
         _spawnX = maxRight;
         _currentZoneStartX = _spawnX;
         _currentZoneIndex = 0;
+        _middleIndexThisZone = -1;
+        _hasMidTile = false;
+        _midTileDef = null;
         _lastWasSeparator = _active.Count > 0 ? _active[_active.Count - 1].def.isSeparator : true;
         return true;
     }
@@ -128,6 +170,8 @@ public class BackgroundSpawner : MonoBehaviour
     private void SpawnSingleTile()
     {
         TileDefinition picked;
+        bool placingMiddleTile = false;
+
         if (_lastWasSeparator)
         {
             if (_endTriggered)
@@ -137,12 +181,24 @@ public class BackgroundSpawner : MonoBehaviour
             }
             else
             {
-                float totalWeight = 0f;
-                foreach (var def in _tileDefinitions)
-                    if (!def.isSeparator && !def.isEnd && (def.isDefault || (_wallsSince.TryGetValue(def, out int c) && c >= def.minWallsBefore)))
-                        totalWeight += def.weight;
+                int contentIndex = _contentTilesInZone + 1;
 
-                picked = PickTileType(_tileDefinitions, _wallsSince, Random.Range(0f, totalWeight));
+                // Decide the middle tile for this zone when its first content tile appears.
+                if (contentIndex == 1)
+                    _middleIndexThisZone = HasActiveZone()
+                        ? MiddleTileIndex(_zones[_currentZoneIndex].tileCount, _rng)
+                        : -1;
+
+                if (HasActiveZone() && contentIndex == _middleIndexThisZone)
+                {
+                    picked = MatchEventTile(_tileDefinitions, _zones[_currentZoneIndex].inputType, (float)_rng.NextDouble())
+                             ?? PickWeighted();
+                    placingMiddleTile = true;
+                }
+                else
+                {
+                    picked = PickWeighted();
+                }
             }
         }
         else
@@ -154,6 +210,15 @@ public class BackgroundSpawner : MonoBehaviour
 
         var go = GetFromPool(picked);
         go.transform.position = new Vector3(_spawnX + picked.PivotOffsetX, _tileY, _tileZ);
+
+        if (placingMiddleTile)
+        {
+            _midTileLeftX = _spawnX;
+            _midTileWidth = picked.Width;
+            _midTileDef = picked;
+            _hasMidTile = true;
+        }
+
         _spawnX += picked.Width;
 
         if (_lastWasSeparator)
@@ -172,6 +237,20 @@ public class BackgroundSpawner : MonoBehaviour
         if (picked.isEnd) _finished = true;
     }
 
+    private bool HasActiveZone() =>
+        _zones != null && _currentZoneIndex < _zones.Length && _zones[_currentZoneIndex].tileCount > 0;
+
+    private TileDefinition PickWeighted()
+    {
+        float totalWeight = 0f;
+        foreach (var def in _tileDefinitions)
+            if (!def.isSeparator && !def.isEnd && !def.isEventTile &&
+                (def.isDefault || (_wallsSince.TryGetValue(def, out int c) && c >= def.minWallsBefore)))
+                totalWeight += def.weight;
+
+        return PickTileType(_tileDefinitions, _wallsSince, (float)(_rng.NextDouble() * totalWeight));
+    }
+
     private void CheckZone()
     {
         if (_zones == null || _currentZoneIndex >= _zones.Length) return;
@@ -179,45 +258,64 @@ public class BackgroundSpawner : MonoBehaviour
         Debug.Log($"[BackgroundSpawner] Zone {_currentZoneIndex}: {_contentTilesInZone}/{zone.tileCount} tiles, startX={_currentZoneStartX:F2}, spawnX={_spawnX:F2}");
         if (_contentTilesInZone < zone.tileCount) return;
 
-        CreateZoneOverlay(_currentZoneStartX, _spawnX, zone.color, zone.inputType);
+        CreateSectionOverlays(_currentZoneStartX, _spawnX, zone);
+
         _currentZoneIndex++;
         _currentZoneStartX = _spawnX;
         _contentTilesInZone = 0;
+        _middleIndexThisZone = -1;
+        _hasMidTile = false;
+        _midTileDef = null;
     }
 
-    public ZoneInputType GetInputTypeAt(float x)
+    private void CreateSectionOverlays(float startX, float endX, TileZone zone)
     {
-        foreach (var (startX, endX, inputType) in _zoneBoundaries)
-            if (x >= startX && x < endX)
-                return inputType;
-        return ZoneInputType.Talk;
-    }
-
-    private void CreateZoneOverlay(float startX, float endX, Color color, ZoneInputType inputType)
-    {
-        _zoneBoundaries.Add((startX, endX, inputType));
         float width = endX - startX;
-        Debug.Log($"[BackgroundSpawner] Creating ZoneOverlay: x={startX:F2}→{endX:F2} width={width:F2} color={color} alpha={color.a:F2} type={inputType}");
-        if (width <= 0f) { Debug.LogWarning("[BackgroundSpawner] ZoneOverlay skipped — width <= 0"); return; }
+        if (width <= 0f) { Debug.LogWarning("[BackgroundSpawner] Section overlay skipped — width <= 0"); return; }
 
+        float height = OverlayHeight();
+
+        // Gray travel overlay across the whole section.
+        CreateOverlayQuad("ZoneOverlay", startX, width, height, _defaultZoneColor, 1);
+
+        // Colored overlay over just the specific (middle) challenge tile, on top.
+        if (_hasMidTile && _midTileWidth > 0f)
+        {
+            Color overlayColor = _midTileDef != null ? _midTileDef.overlayColor : Color.white;
+            CreateOverlayQuad("SpecificZoneOverlay", _midTileLeftX, _midTileWidth, height, overlayColor, 2);
+            float midpointX = _midTileLeftX + _midTileWidth * 0.5f;
+            _challenges.Add(new ChallengePoint(midpointX, zone.inputType));
+            Debug.Log($"[BackgroundSpawner] Challenge at x={midpointX:F2} type={zone.inputType}");
+        }
+        else
+        {
+            Debug.LogWarning($"[BackgroundSpawner] No specific-zone tile recorded for zone {_currentZoneIndex}; no challenge created.", this);
+        }
+    }
+
+    private float OverlayHeight()
+    {
         float height = 0f;
         foreach (var def in _tileDefinitions)
             if (def.sprite != null && !def.isSeparator && !def.isEnd)
                 height = Mathf.Max(height, def.sprite.bounds.size.y);
-        if (height <= 0f) height = 1f;
+        return height <= 0f ? 1f : height;
+    }
 
+    private void CreateOverlayQuad(string name, float leftX, float width, float height, Color color, int sortingOrder)
+    {
         var tex = new Texture2D(1, 1);
         tex.SetPixel(0, 0, Color.white);
         tex.Apply();
-        var overlaySprite = Sprite.Create(tex, new Rect(0, 0, 1, 1), new Vector2(0f, 0.5f), 1f);
+        var sprite = Sprite.Create(tex, new Rect(0, 0, 1, 1), new Vector2(0f, 0.5f), 1f);
 
-        var obj = new GameObject("ZoneOverlay");
+        var obj = new GameObject(name);
         obj.transform.SetParent(transform);
         var sr = obj.AddComponent<SpriteRenderer>();
-        sr.sprite = overlaySprite;
+        sr.sprite = sprite;
         sr.color = color;
-        sr.sortingOrder = 1;
-        obj.transform.position = new Vector3(startX, _tileY, _overlayZ);
+        sr.sortingOrder = sortingOrder;
+        obj.transform.position = new Vector3(leftX, _tileY, _overlayZ);
         obj.transform.localScale = new Vector3(width, height, 1f);
     }
 
@@ -283,7 +381,7 @@ public class BackgroundSpawner : MonoBehaviour
         float right = cam != null ? cam.ViewportToWorldPoint(new Vector3(1f, 0.5f, 0f)).x : 8f;
 
         foreach (var def in _tileDefinitions)
-            if (!def.isDefault && !def.isSeparator)
+            if (!def.isDefault && !def.isSeparator && !def.isEventTile)
                 _wallsSince[def] = def.minWallsBefore;
 
         _spawnX = transform.position.x;
@@ -293,6 +391,9 @@ public class BackgroundSpawner : MonoBehaviour
         _finished = false;
         _contentTilesInZone = 0;
         _currentZoneIndex = 0;
+        _middleIndexThisZone = -1;
+        _hasMidTile = false;
+        _midTileDef = null;
 
         int safety = 500;
         while (!_finished && _spawnX < right + _lookahead && safety-- > 0)
@@ -307,7 +408,7 @@ public class BackgroundSpawner : MonoBehaviour
 
         _active.Clear();
         _manualTiles.Clear();
-        _zoneBoundaries.Clear();
+        _challenges.Clear();
         foreach (var q in _pool.Values) q.Clear();
         _pool.Clear();
         _wallsSince.Clear();
@@ -318,6 +419,9 @@ public class BackgroundSpawner : MonoBehaviour
         _contentTilesInZone = 0;
         _currentZoneIndex = 0;
         _currentZoneStartX = 0f;
+        _middleIndexThisZone = -1;
+        _hasMidTile = false;
+        _midTileDef = null;
     }
 
     private float CameraLeft() =>
@@ -334,7 +438,7 @@ public class BackgroundSpawner : MonoBehaviour
         float cumulative = 0f;
         foreach (var def in definitions)
         {
-            if (def.isSeparator || def.isEnd) continue;
+            if (def.isSeparator || def.isEnd || def.isEventTile) continue;
             if (!def.isDefault && (!wallsSince.TryGetValue(def, out int count) || count < def.minWallsBefore))
                 continue;
 
@@ -364,5 +468,50 @@ public class BackgroundSpawner : MonoBehaviour
         {
             wallsSince[placed] = 0;
         }
+    }
+
+    /// <summary>
+    /// The 1-based content-tile index that is the specific zone within a section.
+    /// Odd counts use the exact middle; even counts randomly pick the lower or
+    /// upper of the two central tiles. Returns -1 for non-positive counts.
+    /// </summary>
+    public static int MiddleTileIndex(int tileCount, System.Random rng)
+    {
+        if (tileCount <= 0) return -1;
+        if ((tileCount & 1) == 1) return (tileCount + 1) / 2;
+
+        int lower = tileCount / 2;
+        return rng.Next(0, 2) == 0 ? lower : lower + 1;
+    }
+
+    /// <summary>
+    /// Weighted-random pick among event tiles matching <paramref name="type"/>.
+    /// <paramref name="roll01"/> is in [0, 1). Returns null when none match, so
+    /// the caller can fall back to a normal tile.
+    /// </summary>
+    public static TileDefinition MatchEventTile(TileDefinition[] definitions, ZoneInputType type, float roll01)
+    {
+        float totalWeight = 0f;
+        foreach (var def in definitions)
+            if (def.isEventTile && def.eventType == type)
+                totalWeight += def.weight;
+
+        if (totalWeight <= 0f) return null;
+
+        float target = roll01 * totalWeight;
+        float cumulative = 0f;
+        foreach (var def in definitions)
+        {
+            if (!def.isEventTile || def.eventType != type) continue;
+            cumulative += def.weight;
+            if (target < cumulative) return def;
+        }
+
+        // Floating-point edge: return the last matching tile.
+        for (int i = definitions.Length - 1; i >= 0; i--)
+            if (definitions[i].isEventTile && definitions[i].eventType == type)
+                return definitions[i];
+
+        return null;
     }
 }
