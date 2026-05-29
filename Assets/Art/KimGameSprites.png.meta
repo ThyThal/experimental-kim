@@ -210,8 +210,8 @@ TextureImporter:
         y: 736
         width: 37
         height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6216216, y: 0.15789473}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -232,8 +232,8 @@ TextureImporter:
         y: 818
         width: 20
         height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.13333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -430,8 +430,8 @@ TextureImporter:
         y: 753
         width: 26
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.3846154, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -474,8 +474,8 @@ TextureImporter:
         y: 656
         width: 69
         height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.15789473}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -492,12 +492,12 @@ TextureImporter:
       name: KimGameSprites_19
       rect:
         serializedVersion: 2
-        x: 610
+        x: 632
         y: 656
-        width: 75
+        width: 63
         height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.36507937, y: 0.15789473}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -518,8 +518,8 @@ TextureImporter:
         y: 736
         width: 41
         height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5609756, y: 0.15789473}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -536,12 +536,12 @@ TextureImporter:
       name: KimGameSprites_21
       rect:
         serializedVersion: 2
-        x: 818
+        x: 836
         y: 736
-        width: 50
+        width: 42
         height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.54761904, y: 0.15789473}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -664,6 +664,160 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35314cf0559345a4fbee9de1fa481bad
+      internalID: -1985777687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_18
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 500
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3326480e0268cfd4594b324a0ad473c9
+      internalID: 636687451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_23
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 500
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15a8c2168b6b22149a9aae4652b795e3
+      internalID: 848250082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_28
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 500
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02219bddc248aa548a3acd3d4640ff68
+      internalID: -1712195265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallTalk
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 816
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3df824e7da739142b3b5f46d8cd97a9
+      internalID: -1235496321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallTal
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 816
+        width: 30
+        height: 57
+      alignment: 9
+      pivot: {x: 0.7666667, y: 0.15789473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 938bb7fbcd526c8498d36d226f11cc26
+      internalID: 836010122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_29
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 646
+        width: 60
+        height: 57
+      alignment: 9
+      pivot: {x: 0.38333336, y: 0.15789473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c92e517ed6ead448c945bbfa0de699
+      internalID: 298235099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -700,6 +854,7 @@ TextureImporter:
       KimGameSprites_26: 1764758756
       KimGameSprites_27: -1851769553
       KimGameSprites_28: -1712195265
+      KimGameSprites_29: 298235099
       KimGameSprites_3: 2860702990859403856
       KimGameSprites_4: 7023018863816109280
       KimGameSprites_5: 8884288349872077167
@@ -707,6 +862,8 @@ TextureImporter:
       KimGameSprites_7: -1389103207
       KimGameSprites_8: -705362198
       KimGameSprites_9: -975569277
+      SmallTal: 836010122
+      SmallTalk: -1235496321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
