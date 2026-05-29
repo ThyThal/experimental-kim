@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff29698406cb9b64fb95725e7fc7af31, type: 3}
-  m_Name: Paints
+  m_Name: Decorated Wall 3
   m_EditorClassIdentifier: MRKim.Scripts::TileDefinition
-  sprite: {fileID: -705362198, guid: 76760157c52c11f4ab799acfcd6d5105, type: 3}
+  sprite: {fileID: -1851769553, guid: 76760157c52c11f4ab799acfcd6d5105, type: 3}
   weight: 1
-  minWallsBefore: 1
+  minWallsBefore: 0
   isDefault: 0
+  isSeparator: 0
+  isEnd: 0

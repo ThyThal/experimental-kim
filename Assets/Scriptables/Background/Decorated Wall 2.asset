@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff29698406cb9b64fb95725e7fc7af31, type: 3}
   m_Name: Decorated Wall 2
   m_EditorClassIdentifier: MRKim.Scripts::TileDefinition
-  sprite: {fileID: 1664803858, guid: 76760157c52c11f4ab799acfcd6d5105, type: 3}
+  sprite: {fileID: 1764758756, guid: 76760157c52c11f4ab799acfcd6d5105, type: 3}
   weight: 1
-  minWallsBefore: 1
+  minWallsBefore: 0
   isDefault: 0
+  isSeparator: 0
+  isEnd: 0
