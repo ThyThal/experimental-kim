@@ -1,0 +1,940 @@
+fileFormatVersion: 2
+guid: 76760157c52c11f4ab799acfcd6d5105
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2553893787669375099
+    second: KimGameSprites_0
+  - first:
+      213: -7579372934543730620
+    second: KimGameSprites_1
+  - first:
+      213: -4273452697996040285
+    second: KimGameSprites_2
+  - first:
+      213: 2860702990859403856
+    second: KimGameSprites_3
+  - first:
+      213: 7023018863816109280
+    second: KimGameSprites_4
+  - first:
+      213: 8884288349872077167
+    second: KimGameSprites_5
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: KimGameSprites_0
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 929
+        width: 17
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b782c186ed0417320800000000000000
+      internalID: 2553893787669375099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_1
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 953
+        width: 35
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4489f482978a0d690800000000000000
+      internalID: -7579372934543730620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Finish
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 928
+        width: 192
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a7e283b965a1b4c0800000000000000
+      internalID: -4273452697996040285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 906
+        width: 34
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 052821aa63243b720800000000000000
+      internalID: 2860702990859403856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_4
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 736
+        width: 37
+        height: 57
+      alignment: 9
+      pivot: {x: 0.6216216, y: 0.15789473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ec60a47276c67160800000000000000
+      internalID: 7023018863816109280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_5
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 818
+        width: 20
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.13333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f693448ee255b4b70800000000000000
+      internalID: 8884288349872077167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 929
+        width: 39
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80e0a162df1ae984a8093ce219f444e3
+      internalID: -778921522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_7
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 929
+        width: 47
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c1d296e5cea28642be88ad8387d65ab
+      internalID: -1389103207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_8
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 929
+        width: 39
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347952b58cc7064489e58f2c558bd041
+      internalID: -705362198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_9
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 929
+        width: 15
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91f7151b88c35dd40865a9c86d16a361
+      internalID: -975569277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_10
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 929
+        width: 31
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e25f1e4550b56d4e9ac81c2a7864762
+      internalID: 1664803858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_11
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 928
+        width: 21
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7123e37521413254f90e17401c13aec2
+      internalID: -1647839757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_12
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 928
+        width: 25
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb1ea5773594af41928e896bbc71fd6
+      internalID: 793037707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Wall1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 801
+        width: 64
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad8ab990ec518d94d905a8fd753eb590
+      internalID: -388327126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 753
+        width: 26
+        height: 20
+      alignment: 9
+      pivot: {x: 0.3846154, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a20f4bba68842ea4a9ddac60985be8b4
+      internalID: -1904586497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_15
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 736
+        width: 45
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f5744befedc1e6499a8daec1fd30eac
+      internalID: 40250395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_16
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 656
+        width: 69
+        height: 57
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.15789473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2707b5df8d08ee64cacccd1f66ed153d
+      internalID: -506205720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_19
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 656
+        width: 63
+        height: 57
+      alignment: 9
+      pivot: {x: 0.36507937, y: 0.15789473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 023923c49896da64a88b625d587e1d15
+      internalID: 254325654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_20
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 736
+        width: 41
+        height: 57
+      alignment: 9
+      pivot: {x: 0.5609756, y: 0.15789473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22158fb51b9667b4e9f5f3cbf10df457
+      internalID: -721662270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_21
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 736
+        width: 42
+        height: 57
+      alignment: 9
+      pivot: {x: 0.54761904, y: 0.15789473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7fdf5c50edf7d5489e8146e4647daed
+      internalID: 1956575664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_22
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 752
+        width: 30
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6493056828372c540a7eef8c2d1a44c5
+      internalID: -1647039010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Wall2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 801
+        width: 64
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 569dfd790c9c7a84abd3f05e1e7d09ea
+      internalID: 1820984202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Wall3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 801
+        width: 64
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 091a7214f2ac59c49ba6495637980681
+      internalID: -1103313999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Wall4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 801
+        width: 48
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fbf37cb5e3751b448855b3c82158b90
+      internalID: 1764758756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Wall5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 801
+        width: 64
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 068b1adc4fe50a6409638e42ba5c69eb
+      internalID: -1851769553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Scream
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35314cf0559345a4fbee9de1fa481bad
+      internalID: -1985777687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Clap
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 500
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3326480e0268cfd4594b324a0ad473c9
+      internalID: 636687451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Talk
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 500
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15a8c2168b6b22149a9aae4652b795e3
+      internalID: 848250082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Murmur
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 500
+        width: 192
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02219bddc248aa548a3acd3d4640ff68
+      internalID: -1712195265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallTalk
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 816
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3df824e7da739142b3b5f46d8cd97a9
+      internalID: -1235496321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallTal
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 816
+        width: 30
+        height: 57
+      alignment: 9
+      pivot: {x: 0.7666667, y: 0.15789473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 938bb7fbcd526c8498d36d226f11cc26
+      internalID: 836010122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KimGameSprites_29
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 646
+        width: 60
+        height: 57
+      alignment: 9
+      pivot: {x: 0.38333336, y: 0.15789473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c92e517ed6ead448c945bbfa0de699
+      internalID: 298235099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Angry
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 435
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 210cdc9703930e041b5e3f551ef3b5cf
+      internalID: 747220518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Happy
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 435
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790879d3e57d7a244a805d554a62a703
+      internalID: -620658955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 432
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 216c661ba44dfdb4fb6648fb0136162b
+      internalID: 2011439747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Angry: 747220518
+      BG_Clap: 636687451
+      BG_Finish: -4273452697996040285
+      BG_Murmur: -1712195265
+      BG_Scream: -1985777687
+      BG_Talk: 848250082
+      BG_Wall1: -388327126
+      BG_Wall2: 1820984202
+      BG_Wall3: -1103313999
+      BG_Wall4: 1764758756
+      BG_Wall5: -1851769553
+      Button: 2011439747
+      Happy: -620658955
+      KimGameSprites_0: 2553893787669375099
+      KimGameSprites_1: -7579372934543730620
+      KimGameSprites_10: 1664803858
+      KimGameSprites_11: -1647839757
+      KimGameSprites_12: 793037707
+      KimGameSprites_15: 40250395
+      KimGameSprites_16: -506205720
+      KimGameSprites_17: -1904586497
+      KimGameSprites_19: 254325654
+      KimGameSprites_20: -721662270
+      KimGameSprites_21: 1956575664
+      KimGameSprites_22: -1647039010
+      KimGameSprites_29: 298235099
+      KimGameSprites_3: 2860702990859403856
+      KimGameSprites_4: 7023018863816109280
+      KimGameSprites_5: 8884288349872077167
+      KimGameSprites_6: -778921522
+      KimGameSprites_7: -1389103207
+      KimGameSprites_8: -705362198
+      KimGameSprites_9: -975569277
+      SmallTal: 836010122
+      SmallTalk: -1235496321
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -43,6 +43,9 @@ public class SoundClassifier : MonoBehaviour
         _soundDetector.OnSoundStop -= HandleSoundStop;
     }
 
+    public ZoneInputType CurrentType { get; private set; } = ZoneInputType.Talk;
+    public bool IsActive => _soundDetector.IsActive;
+
     private void Update()
     {
         if (_soundDetector.IsActive)
@@ -53,11 +56,13 @@ public class SoundClassifier : MonoBehaviour
             _amplitudeSum += _microphoneManager.Amplitude;
             _amplitudeSampleCount++;
 
-            if (_detectionLabel != null && _amplitudeSampleCount > 0)
+            if (_amplitudeSampleCount > 0)
             {
                 float avg = _amplitudeSum / _amplitudeSampleCount;
                 float crest = avg > 0f ? _peakDuringBurst / avg : 0f;
-                _detectionLabel.text = Classify(crest, avg);
+                CurrentType = Classify(crest, avg);
+                if (_detectionLabel != null)
+                    _detectionLabel.text = CurrentType.ToString();
             }
         }
         else if (_detectionLabel != null && _detectionLabel.text != "...")
@@ -82,22 +87,22 @@ public class SoundClassifier : MonoBehaviour
         float avgAmplitude = _amplitudeSampleCount > 0 ? _amplitudeSum / _amplitudeSampleCount : 0f;
         float crestFactor = avgAmplitude > 0f ? _peakDuringBurst / avgAmplitude : 0f;
 
-        string soundType = Classify(crestFactor, avgAmplitude);
-        Debug.Log($"[SoundClassifier] {soundType} | duration: {duration:F2}s | crest: {crestFactor:F1} | amplitude: {avgAmplitude:F3}");
+        CurrentType = Classify(crestFactor, avgAmplitude);
+        Debug.Log($"[SoundClassifier] {CurrentType} | duration: {duration:F2}s | crest: {crestFactor:F1} | amplitude: {avgAmplitude:F3}");
 
         _lastSoundStopTime = Time.time;
 
         if (_detectionLabel != null)
-            _detectionLabel.text = soundType;
+            _detectionLabel.text = CurrentType.ToString();
     }
 
-    private string Classify(float crestFactor, float avgAmplitude)
+    private ZoneInputType Classify(float crestFactor, float avgAmplitude)
     {
         if (crestFactor >= _clapCrestThreshold)
-            return "Clap";
+            return ZoneInputType.Clap;
 
-        if (avgAmplitude >= _screamAmplitudeThreshold) return "Scream";
-        if (avgAmplitude >= _talkAmplitudeThreshold) return "Talk";
-        return "Murmur";
+        if (avgAmplitude >= _screamAmplitudeThreshold) return ZoneInputType.Scream;
+        if (avgAmplitude >= _talkAmplitudeThreshold)   return ZoneInputType.Talk;
+        return ZoneInputType.Murmur;
     }
 }
